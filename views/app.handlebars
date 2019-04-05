@@ -10,7 +10,7 @@
   <nav><a href="/login"><img id="logo" src="/assets/img/face.png" alt="face logo"/></a>
     <div class="navlink"><a href="/logout">Log out</a></div>
   </nav>
-  <section id="makeDomo">
+  {{!-- <section id="makeDomo">
     <form id="domoForm" name="domoForm" action="/maker" method="POST" class="domoForm">
       <label for="name">Name: </label>
       <input id="domoName" type="text" name="name" placeholder="Domo Name"/>
@@ -19,18 +19,28 @@
       <input type="hidden" name="_csrf" value="{{csrfToken}}"/>
       <input class="makeDomoSubmit" type="submit" value="Make Domo" />
     </form>
+  </section> --}}
+  <section id="makePost">
+    <form id="postForm" name="postForm" action="/maker" method="POST" class="postForm">
+      <label for="name">Title: </label>
+      <input id="postTitle" type="text" name="title" placeholder="Post Title"/>
+      <label for="content">Post Content: </label>
+      <input id="postContent" type="text" name="content" placeholder=""/>
+      <input type="hidden" name="_csrf" value="{{csrfToken}}"/>
+      <input class="makePostSubmit" type="submit" value="Post Now" />
+    </form>
   </section>
-  <section id="domos">
-    <div class="domo">
-      {{#if domos}}
-        {{#each domos}}
-          <div class="domo"><img src="/assets/img/domoface.jpeg" alt="domo face" class="domoFace"/>
-            <h3 class="domoName">Name: {{this.name}}</h3>
-            <h3 class="domoAge">Age: {{this.age}}</h3>
+  <section id="posts">
+    <div class="post">
+      {{#if posts}}
+        {{#each posts}}
+          <div class="post">
+            <h3 class="postTitle">Name: {{this.title}}</h3>
+            <h3 class="postContent">{{this.content}}</h3>
           </div>
         {{/each}}
       {{else}}
-        <h3 class="emptyDomo">No Domos yet</h3>
+        <h3 class="emptyPost">You haven't posted yet</h3>
       {{/if}}
     </div>
   </section>
