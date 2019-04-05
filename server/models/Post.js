@@ -7,7 +7,7 @@ let PostModel = {};
 const convertId = mongoose.Types.ObjectId;
 const setTitle = (title) => _.escape(title).trim();
 
-const PostScheme = new mongoose.Schema({
+const PostSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
