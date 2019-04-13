@@ -35,7 +35,7 @@ PostSchema.statics.findByOwner = (ownerID, callback) => {
       owner: convertId(ownerID),
     };
   
-    return DomoModel.find(search).select('title content createdDate').exec(callback);
+    return PostModel.find(search).select('title content createdDate').exec(callback);
 };
 
 PostModel = mongoose.model("Post", PostSchema);

@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Kwik Post - Browse</title>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link rel="shortcut icon" href="/assets/img/favicon.png"/>
+  <link rel="stylesheet" type="text/css" href="/assets/style.css"/>
+</head>
+<body>
+  <nav><a href="/login"><img id="logo" src="/assets/img/favicon.png" alt="notepad"/></a>
+    <div class="navlink"><a href="/logout">Log out</a></div>
+  </nav>
+  <section id="posts">
+    <div class="post">
+      {{#if posts}}
+        {{#each posts}}
+          <div class="post">
+            <h3 class="postTitle">Name: {{this.title}}</h3>
+            <h3 class="postContent">{{this.content}}</h3>
+          </div>
+        {{/each}}
+      {{else}}
+        <h3 class="emptyPost">You haven't posted yet</h3>
+      {{/if}}
+    </div>
+  </section>
+  <div id="messageBox">
+    <img id="speech" src="/assets/img/favicon.png" alt="message box"/>
+    <h3><span id="errorMessage"></span></h3><img id="domo" src="assets/img/domo.png" alt="error message"/>
+  </div>
+  <script src="/assets/bundle.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Kwik Post - Account</title>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link rel="shortcut icon" href="/assets/img/favicon.png"/>
+  <link rel="stylesheet" type="text/css" href="/assets/style.css"/>
+</head>
+<body>
+  <nav><a href="/login"><img id="logo" src="/assets/img/favicon.png" alt="notepad"/></a>
+    <div class="navlink"><a href="/login">Login</a></div>
+    <div class="navlink"><a href="/signup">Sign up</a></div>
+    <div class="navlink"><a href="/account">Change Password</a></div>
+  </nav>
+  <section id="change">
+    <form id="changeForm" name="changeForm" action="/change" method="POST" class="mainForm">
+      <label for="password">Current Password: </label>
+      <input id="oldPass" type="password" name="password" placeholder="Current Password"/>
+      <label for="newPass">New Password: </label>
+      <input id="newPass" type="password" name="newPass" placeholder="New Password"/>
+      <label for="newPass2">Confirm New Password: </label>
+      <input id="newPass2" type="password" name="newPass2" placeholder="Retype New Password"/>
+      <input type="hidden" name="_csrf" value="{{csrfToken}}"/>
+      <input class="formSubmit" type="submit" value="Change Password" />
+    </form>
+  </section>
+  <div id="messageBox">
+    <img id="speech" src="/assets/img/favicon.png" alt="message box"/>
+    <h3><span id="errorMessage"></span></h3><img id="domo" src="assets/img/domo.png" alt="error message"/>
+  </div>
+  <script src="/assets/bundle.js"></script>
+</body>
+</html>

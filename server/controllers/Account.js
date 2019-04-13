@@ -82,8 +82,58 @@ const signup = (request, response) => {
   });
 };
 
+const accountPage = (req, res) => {
+  res.render('account', { csrfToken: req.csrfToken() });
+};
+
+const changePassword = (request, response) => {
+  const req = request;
+  const res = response;
+
+  // cast to strings to cover up some security flaws
+  req.body.password = `${req.body.password}`;
+  req.body.newPass = `${req.body.newPass}`;
+  req.body.newPass2 = `${req.body.newPass2}`;
+
+  if (!req.body.password || !req.body.newPass || !req.body.newPass2) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+
+  if (req.body.newPass !== req.body.newPass2) {
+    return res.status(400).json({ error: 'New passwords do not match' });
+  }
+
+  return Account.AccountModel.generateHash(req.body.newPass, (salt, hash) => {
+    const accountData = {
+      username: req.body.username,
+      salt,
+      password: hash,
+    };
+
+    const newAccount = new Account.AccountModel(accountData);
+
+    const savePromise = newAccount.save();
+
+    savePromise.then(() => {
+      req.session.account = Account.AccountModel.toAPI(newAccount);
+      return res.json({ redirect: '/maker' });
+    });
+    savePromise.catch((err) => {
+      console.log(err);
+
+      if (err.code === 11000) {
+        return res.status(400).json({ error: 'Username already in use.' });
+      }
+
+      return res.status(400).json({ error: 'An error occurred' });
+    });
+  });
+};
+
 module.exports.loginPage = loginPage;
 module.exports.login = login;
 module.exports.logout = logout;
 module.exports.signupPage = signupPage;
 module.exports.signup = signup;
+module.exports.accountPage = accountPage;
+module.exports.changePassword = changePassword;

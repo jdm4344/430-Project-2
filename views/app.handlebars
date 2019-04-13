@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <title>DomoMaker</title>
+  <title>Kwik Post - Homepage</title>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <link rel="shortcut icon" href="/assets/img/favicon.png"/>
   <link rel="stylesheet" type="text/css" href="/assets/style.css"/>
@@ -25,7 +25,7 @@
       <label for="name">Title: </label>
       <input id="postTitle" type="text" name="title" placeholder="Post Title"/>
       <label for="content">Post Content: </label>
-      <input id="postContent" type="text" name="content" placeholder=""/>
+      <textarea id="postContent" type="text" name="content" placeholder="" rows="10" cols="50"></textarea>
       <input type="hidden" name="_csrf" value="{{csrfToken}}"/>
       <input class="makePostSubmit" type="submit" value="Post Now" />
     </form>
@@ -44,8 +44,9 @@
       {{/if}}
     </div>
   </section>
-  <div id="domoMessage"><img id="speech" src="/assets/img/speech.png" alt="speech box"/>
-    <h3><span id="errorMessage"></span></h3><img id="domo" src="assets/img/domo.png" alt="domo"/>
+  <div id="messageBox">
+    <img id="speech" src="/assets/img/favicon.png" alt="message box"/>
+    <h3><span id="errorMessage"></span></h3><img id="domo" src="assets/img/domo.png" alt="error message"/>
   </div>
   <script src="/assets/bundle.js"></script>
 </body>
