@@ -96,38 +96,37 @@ const changePassword = (request, response) => {
   req.body.newPass2 = `${req.body.newPass2}`;
 
   if (!req.body.password || !req.body.newPass || !req.body.newPass2) {
-    return res.status(400).json({ error: 'All fields are required' });
+    return res.status(400).json({ message: 'All fields are required' });
   }
 
   if (req.body.newPass !== req.body.newPass2) {
-    return res.status(400).json({ error: 'New passwords do not match' });
+    return res.status(400).json({ message: 'New passwords do not match' });
   }
 
-  return Account.AccountModel.generateHash(req.body.newPass, (salt, hash) => {
-    const accountData = {
-      username: req.body.username,
-      salt,
-      password: hash,
-    };
+  // Authenticate the old password
+  Account.AccountModel.authenticate(req.session.account.username, req.body.password, (err, account) => {
+    if (err || !account) {
+      return res.status(401).json({ message: 'Incorrect password' });
+    }
+  });
 
-    const newAccount = new Account.AccountModel(accountData);
+  // Hash new password
+  Account.AccountModel.generateHash(req.body.newPass, (salt, hash) => {
+    // const accountData = {
+    //   username: req.body.username,
+    //   salt,
+    //   password: hash,
+    // };
 
-    const savePromise = newAccount.save();
-
-    savePromise.then(() => {
-      req.session.account = Account.AccountModel.toAPI(newAccount);
-      return res.json({ redirect: '/maker' });
-    });
-    savePromise.catch((err) => {
-      console.log(err);
-
-      if (err.code === 11000) {
-        return res.status(400).json({ error: 'Username already in use.' });
+    return Account.AccountModel.changePassword(req.session.account.username, salt, hash, (err) => {
+      if (err) {
+        console.log(err);
+        return res.status(400).json({ message: 'An error occured' });
       }
-
-      return res.status(400).json({ error: 'An error occurred' });
     });
   });
+
+  return res.status(200).json({ message: "Password updated"});  
 };
 
 module.exports.loginPage = loginPage;

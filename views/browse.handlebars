@@ -7,19 +7,20 @@
   <link rel="stylesheet" type="text/css" href="/assets/style.css"/>
 </head>
 <body>
-  <nav><a href="/login"><img id="logo" src="/assets/img/favicon.png" alt="notepad"/></a>
+  <nav><a href="/browse"><img id="logo" src="/assets/img/favicon.png" alt="notepad"/></a>
     <div class="navlink"><a href="/logout">Log out</a></div>
     <div class="navlink"><a href="/login">Login</a></div>
     <div class="navlink"><a href="/maker">Homepage</a></div>
     <div class="navlink"><a href="/browse">Browse</a></div>
   </nav>
   <section id="posts">
-    <div class="post">
+    <div>
       {{#if posts}}
         {{#each posts}}
           <div class="post">
             <h3 class="postTitle">{{this.title}}</h3>
-            <h3 class="postOwner">By: {{this.owner}}</h3>
+            <h3 class="postOwner">By: {{this.ownerName}}</h3>
+            <h3 class="postContent">{{this.createdDate}}</h3>
             <h3 class="postContent">{{this.content}}</h3>
           </div>
         {{/each}}

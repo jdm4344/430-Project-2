@@ -7,7 +7,8 @@
   <link rel="stylesheet" type="text/css" href="/assets/style.css"/>
 </head>
 <body>
-  <nav><a href="/login"><img id="logo" src="/assets/img/favicon.png" alt="notepad"/></a>
+  <nav><a href="/browse"><img id="logo" src="/assets/img/favicon.png" alt="notepad"/></a>
+    <div class="navlink"><a href="/logout">Log out</a></div>
     <div class="navlink"><a href="/maker">Homepage</a></div>
     <div class="navlink"><a href="/account">Change Password</a></div>
     <div class="navlink"><a href="/browse">Browse</a></div>
@@ -21,8 +22,9 @@
       <label for="newPass2">Confirm New Password: </label>
       <input id="newPass2" type="password" name="newPass2" placeholder="Retype New Password"/>
       <input type="hidden" name="_csrf" value="{{csrfToken}}"/>
-      <input class="formSubmit" type="submit" value="Change Password" />
+      <input id="changeSubmit" type="submit" value="Change Password" />
     </form>
+    <div>{{message}}</div>
   </section>
   <div id="messageBox">
     <img id="speech" src="/assets/img/favicon.png" alt="message box"/>

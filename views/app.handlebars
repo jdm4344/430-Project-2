@@ -7,21 +7,11 @@
   <link rel="stylesheet" type="text/css" href="/assets/style.css"/>
 </head>
 <body>
-  <nav><a href="/login"><img id="logo" src="/assets/img/favicon.png" alt="notepad"/></a>
+  <nav><a href="/browse"><img id="logo" src="/assets/img/favicon.png" alt="notepad"/></a>
     <div class="navlink"><a href="/logout">Log out</a></div>
     <div class="navlink"><a href="/account">Change Password</a></div>
     <div class="navlink"><a href="/browse">Browse</a></div>
   </nav>
-  {{!-- <section id="makeDomo">
-    <form id="domoForm" name="domoForm" action="/maker" method="POST" class="domoForm">
-      <label for="name">Name: </label>
-      <input id="domoName" type="text" name="name" placeholder="Domo Name"/>
-      <label for="age">Age: </label>
-      <input id="domoAge" type="text" name="age" placeholder="Domo Age"/>
-      <input type="hidden" name="_csrf" value="{{csrfToken}}"/>
-      <input class="makeDomoSubmit" type="submit" value="Make Domo" />
-    </form>
-  </section> --}}
   <section id="makePost">
     <form id="postForm" name="postForm" action="/maker" method="POST" class="postForm">
       <label for="name">Title: </label>
@@ -33,12 +23,14 @@
     </form>
   </section>
   <section id="posts">
-    <div class="post">
+    <div>
       {{#if posts}}
         {{#each posts}}
           <div class="post">
-            <h3 class="postTitle">Name: {{this.title}}</h3>
-            <h3 class="postContent">{{this.content}}</h3>
+            <h3 class="postTitle">{{this.title}}</h3>
+            <h3 class="postOwner">By: {{this.ownerName}}</h3>
+            <p class="postContent">{{this.createdDate}}</p>
+            <h3 class="postDate">{{this.content}}</h3>
           </div>
         {{/each}}
       {{else}}
