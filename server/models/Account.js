@@ -84,25 +84,17 @@ AccountSchema.statics.authenticate = (username, password, callback) =>
   });
 });
 
-AccountSchema.statics.changePassword = (username, salt, password, callback) => {
-  console.dir(username);
-  console.dir("new password:");
-  console.dir(password);
-  
-  console.dir("db password - before update:");
-  AccountModel.findOne({username: username}, (err, doc) => {
-    console.dir(doc.password);
-  });
-
+AccountSchema.statics.changePassword = (username, salt, password) => {
   AccountModel.findOneAndUpdate(
     { "username": username },
-    { $set: { "salt": salt, "password": password }}
+    { $set: { "salt": salt, "password": password }},
+    (err) => {
+      if (err) {
+        console.log(err);
+        return res.status(400).json({ message: 'An error occured' });
+      }
+    }
   );
-
-  console.dir("db password - after update:");
-  AccountModel.findOne({username: username}, (err, doc) => {
-    console.dir(doc.password);
-  });
 };
 
 AccountModel = mongoose.model('Account', AccountSchema);

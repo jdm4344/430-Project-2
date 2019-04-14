@@ -73,6 +73,12 @@ $(document).ready(function () {
 
     sendAjax($("#postForm").attr("action"), $("#postForm").serialize());
 
+    if (e.isDefaultPrevented()) {
+      // default event is prevented
+    } else {
+      console.log("not defaulted");
+    }
+
     return false;
   });
 

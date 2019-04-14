@@ -45,6 +45,17 @@ PostSchema.statics.findByOwner = (ownerID, callback) => {
 PostSchema.statics.getAllPosts = (callback) => 
     PostModel.find({}).select('title ownerName content createdDate').exec(callback);
 
+    
+PostSchema.statics.deletePost = (postID, callback) => {
+    const search = {
+        _id: convertId(postID),
+    };
+    
+    PostModel.deleteOne(search, (err) => {
+        if (err) throw err;
+    }).exec(callback);
+};
+
 PostModel = mongoose.model('Post', PostSchema);
 
 module.exports.PostModel = PostModel;
