@@ -13,7 +13,7 @@ const router = (app) => {
   app.get('/edit', mid.requiresLogin, mid.requiresLogout, controllers.Post.editPage);
   app.post('/edit', mid.requiresLogin, mid.requiresLogout, controllers.Post.editPost);
   app.get('/account', mid.requiresLogin, controllers.Account.accountPage);
-  app.post('/change', mid.requiresLogin, mid.requiresLogout, controllers.Account.changePassword);
+  app.post('/change', mid.requiresLogin, controllers.Account.changePassword);
   app.get('/', mid.requiresSecure, mid.requiresLogout, controllers.Browse.displayPosts);
 };
 

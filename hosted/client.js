@@ -79,8 +79,6 @@ $(document).ready(function () {
   $("#changeForm").on("submit", function (e) {
     e.preventDefault();
 
-    $("#messageBox").animate({ width: 'hide' }, 350);
-
     if ($("#pass").val() == '' || $("#newPass").val() == '' || $("#newPass2").val() == '') {
       handleError("All fields are required");
       return false;

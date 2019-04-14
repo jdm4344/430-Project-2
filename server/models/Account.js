@@ -38,6 +38,8 @@ AccountSchema.statics.toAPI = doc => ({
 
 const validatePassword = (doc, password, callback) => {
   const pass = doc.password;
+  console.dir("old password");
+  console.dir(doc.password);
 
   return crypto.pbkdf2(password, doc.salt, iterations, keyLength, 'RSA-SHA512', (err, hash) => {
     if (hash.toString('hex') !== pass) {
@@ -83,10 +85,24 @@ AccountSchema.statics.authenticate = (username, password, callback) =>
 });
 
 AccountSchema.statics.changePassword = (username, salt, password, callback) => {
-  AccountModel.findOneandUpdate(
+  console.dir(username);
+  console.dir("new password:");
+  console.dir(password);
+  
+  console.dir("db password - before update:");
+  AccountModel.findOne({username: username}, (err, doc) => {
+    console.dir(doc.password);
+  });
+
+  AccountModel.findOneAndUpdate(
     { "username": username },
-    { $set: {"password": password, "salt": salt }}, 
+    { $set: { "salt": salt, "password": password }}
   );
+
+  console.dir("db password - after update:");
+  AccountModel.findOne({username: username}, (err, doc) => {
+    console.dir(doc.password);
+  });
 };
 
 AccountModel = mongoose.model('Account', AccountSchema);

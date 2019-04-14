@@ -112,21 +112,14 @@ const changePassword = (request, response) => {
 
   // Hash new password
   Account.AccountModel.generateHash(req.body.newPass, (salt, hash) => {
-    // const accountData = {
-    //   username: req.body.username,
-    //   salt,
-    //   password: hash,
-    // };
-
-    return Account.AccountModel.changePassword(req.session.account.username, salt, hash, (err) => {
+    Account.AccountModel.changePassword(req.session.account.username, salt, hash, (err) => {
       if (err) {
         console.log(err);
         return res.status(400).json({ message: 'An error occured' });
       }
     });
+    return res.status(200).json({ message: "Password updated"});  
   });
-
-  return res.status(200).json({ message: "Password updated"});  
 };
 
 module.exports.loginPage = loginPage;
