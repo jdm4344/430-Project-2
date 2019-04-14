@@ -8,16 +8,16 @@ html, body {
 }
 
 #logo {
-    height: 40px;
-    width: 40;
-    padding-top: 5px;
+    height: 60;
+    width: 50;
+    padding: 1%;
     float:left;
     border-radius: 8px;
 }
 
 nav {
     width: 100%;
-    height: 50px;
+    height: 100px;
     background-color: #66101F;
 }
 
@@ -31,7 +31,7 @@ nav:nth-child(1) {
     padding-left: 20px;
     color: #5D737E;
     font-size: 1.3em;
-    float: left;
+    float: right;
 }
 
 .navlink a, .navlink a:link, .navlink a:visited, .navlink a:hover, .navlink a:active {
@@ -50,26 +50,32 @@ nav:nth-child(1) {
 
 .postForm {
     border: 2px solid #8A8E91;
-    height: 60px;
     width: 700px;
     margin-top:0px;
     padding-top:10px;
     background-color: #66101F;
     border-bottom-right-radius: 4px;
     border-top-right-radius: 4px;
+    text-align: center;
 }
 
 .postForm label {
     display: inline-block;
-    width: 75px;
     margin-left: 10px;
     font-size: 1.2em;
-    float: left;
     color: #92977E;
+    margin: 0.5em auto;
+    display: block;
 }
 
 .postForm input[type=text] {
-    float:left;
+    margin: 0 auto;
+    display: block;
+}
+
+.postForm textarea{
+    margin: 0 auto;
+    display: block;
 }
 
 .postFormSubmit {
@@ -116,14 +122,15 @@ nav:nth-child(1) {
     display: block;
     text-align: center;
     margin: 0 auto;
+    margin-bottom: 0.5em;
     margin-top: 14px;
     font-size: 1.2em;
     width: 100px;
     background-color: #66101F;
     border-radius: 2px;
-    border-color: #66acee;
+    border-color: #8A8E91;
     padding: 3px 0px;
-    color: white;
+    color: #92977E;
     text-decoration: none;
 }
 
@@ -133,7 +140,7 @@ nav:nth-child(1) {
 
 .formSubmit:hover {
     transition: background-color 0.4s ease;
-    background-color: #338acc;
+    background-color: rgba(102, 16, 30, 0.787);
 }
 
 #user, #pass, #pass2 {
@@ -179,6 +186,14 @@ nav:nth-child(1) {
     font-style: italic;
 }
 
+#makePost {
+    width: 40%;
+    min-width: 400px;
+    border-radius: 4px;
+    margin: 0 auto;
+    margin-top: 2em;
+}
+
 #post {
     z-index: 225;
     margin-top: -20px;
@@ -188,35 +203,33 @@ nav:nth-child(1) {
     -ms-transform: rotate(330deg);
     -webkit-transform: rotate(330deg); 
     transform: rotate(330deg);
+    margin: 0 auto;
+    display: block;
 }
 
 #posts {
-    width: 40%;
-    min-width: 400px;
-    border: 2px solid #66101F;
+    max-width: 800px;
     border-radius: 4px;
     margin: 0 auto;
+    display: block;
     margin-top: 100px;
 }
 
 .post {
-    width: 95%;
-    margin: 0 auto;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    border: 2px solid #66101F;
+    border: 4px solid #5D737E;
     border-radius: 4px;
     background-color: #66101F;
     padding: 10px;
     min-height:60px;
     overflow: hidden;
+    margin: 0.5em auto;
+    display: block;
 }
 
 .post:hover {
     transition: border-color 0.2s ease-out;
-    border-color: rgba(255,255,255, 0.8);
+    border-color: #92977E;
     transition: background-color 2.6s ease-out;
-    background-color: #66bfff;
 }
 
 
@@ -226,6 +239,7 @@ h3.emptyPost {
     margin: 0 auto;
     text-align: center;
     margin-top: 18px;
+    color: #92977E;
 }
 
 h3.postTitle {
@@ -252,3 +266,4 @@ h3.postContent {
 .post:last-child {
     margin-bottom:10px;
 }
+

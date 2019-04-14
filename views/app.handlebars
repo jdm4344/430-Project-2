@@ -9,6 +9,8 @@
 <body>
   <nav><a href="/login"><img id="logo" src="/assets/img/favicon.png" alt="notepad"/></a>
     <div class="navlink"><a href="/logout">Log out</a></div>
+    <div class="navlink"><a href="/account">Change Password</a></div>
+    <div class="navlink"><a href="/browse">Browse</a></div>
   </nav>
   {{!-- <section id="makeDomo">
     <form id="domoForm" name="domoForm" action="/maker" method="POST" class="domoForm">
@@ -24,10 +26,10 @@
     <form id="postForm" name="postForm" action="/maker" method="POST" class="postForm">
       <label for="name">Title: </label>
       <input id="postTitle" type="text" name="title" placeholder="Post Title"/>
-      <label for="content">Post Content: </label>
+      <br><label for="content">Post Content: </label>
       <textarea id="postContent" type="text" name="content" placeholder="" rows="10" cols="50"></textarea>
       <input type="hidden" name="_csrf" value="{{csrfToken}}"/>
-      <input class="makePostSubmit" type="submit" value="Post Now" />
+      <input class="formSubmit" type="submit" value="Post Now" />
     </form>
   </section>
   <section id="posts">
@@ -46,7 +48,7 @@
   </section>
   <div id="messageBox">
     <img id="speech" src="/assets/img/favicon.png" alt="message box"/>
-    <h3><span id="errorMessage"></span></h3><img id="domo" src="assets/img/domo.png" alt="error message"/>
+    <h3><span id="errorMessage"></span></h3>
   </div>
   <script src="/assets/bundle.js"></script>
 </body>

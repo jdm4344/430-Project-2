@@ -9,12 +9,12 @@ const router = (app) => {
   app.get('/logout', mid.requiresLogin, controllers.Account.logout);
   app.get('/maker', mid.requiresLogin, controllers.Post.makerPage);
   app.post('/maker', mid.requiresLogin, controllers.Post.make);
-  app.get('/browse', mid.requiresSecure, mid.requiresLogout, controllers.Browse.displayPosts);
+  app.get('/browse', mid.requiresSecure, controllers.Browse.displayPosts);
   app.get('/edit', mid.requiresLogin, mid.requiresLogout, controllers.Post.editPage);
   app.post('/edit', mid.requiresLogin, mid.requiresLogout, controllers.Post.editPost);
-  app.get('/account', mid.requiresLogin, mid.requiresLogout, controllers.Account.accountPage);
+  app.get('/account', mid.requiresLogin, controllers.Account.accountPage);
   app.post('/change', mid.requiresLogin, mid.requiresLogout, controllers.Account.changePassword);
-  app.get('/', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
+  app.get('/', mid.requiresSecure, mid.requiresLogout, controllers.Browse.displayPosts);
 };
 
 module.exports = router;

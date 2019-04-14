@@ -21,6 +21,7 @@ const makePost = (req, res) => {
     const postData = {
         title: req.body.title,
         content: req.body.content,
+        ownerName: req.session.account.username,
         owner: req.session.account._id,
     };
 

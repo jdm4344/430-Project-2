@@ -19,14 +19,18 @@ const PostSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
+    ownerName: {
+        type: String,
+        required: true,
+    },
     owner: {
         type: mongoose.Schema.ObjectId,
         required: true,
         ref: 'Account',
       },
     createdData: {
-    type: Date,
-    default: Date.now,
+        type: Date,
+        default: Date.now,
     },
 });
 
@@ -36,6 +40,10 @@ PostSchema.statics.findByOwner = (ownerID, callback) => {
     };
   
     return PostModel.find(search).select('title content createdDate').exec(callback);
+};
+
+PostSchema.statics.getAllPosts = (callback) => {
+    return PostModel.find({}).select('title content createdDate').exec(callback);
 };
 
 PostModel = mongoose.model("Post", PostSchema);
