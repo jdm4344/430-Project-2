@@ -42,18 +42,18 @@ PostSchema.statics.findByOwner = (ownerID, callback) => {
   return PostModel.find(search).select('title ownerName content createdDate').exec(callback);
 };
 
-PostSchema.statics.getAllPosts = (callback) => 
+PostSchema.statics.getAllPosts = (callback) =>
     PostModel.find({}).select('title ownerName content createdDate').exec(callback);
 
-    
+
 PostSchema.statics.deletePost = (postID, callback) => {
-    const search = {
-        _id: convertId(postID),
-    };
-    
-    PostModel.deleteOne(search, (err) => {
-        if (err) throw err;
-    }).exec(callback);
+  const search = {
+    _id: convertId(postID),
+  };
+
+  PostModel.deleteOne(search, (err) => {
+    if (err) throw err;
+  }).exec(callback);
 };
 
 PostModel = mongoose.model('Post', PostSchema);

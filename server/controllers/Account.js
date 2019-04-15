@@ -113,8 +113,8 @@ const changePassword = (request, response) => {
   // Hash new password
   Account.AccountModel.generateHash(req.body.newPass, (salt, hash) => {
     Account.AccountModel.changePassword(req.session.account.username, salt, hash);
-    
-    return res.status(200).json({ message: "Password updated"});  
+
+    return res.status(200).json({ message: 'Password updated' });
   });
 };
 

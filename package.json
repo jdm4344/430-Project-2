@@ -47,6 +47,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-eslint": "^3.0.1",
     "gulp-nodemon": "^2.2.1",
+    "gulp-rename": "^1.4.0",
     "nodemon": "^1.11.0"
   }
 }

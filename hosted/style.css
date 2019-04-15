@@ -241,6 +241,7 @@ nav:nth-child(1) {
     margin: 0.5em auto;
     margin-right: 0.5em;
     display: block;
+    color: #92977E;
 }
 
 .post:hover {

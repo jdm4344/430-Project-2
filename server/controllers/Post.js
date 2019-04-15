@@ -44,15 +44,13 @@ const makePost = (req, res) => {
 };
 
 const editPage = (req, res) => {
-    
+
 };
 
 const editPost = (req, res) => {
   if (!req.body.title || !req.body.content) {
     return res.status(400).json({ error: 'Both title and content are required' });
   }
-
-
 };
 
 module.exports.makerPage = makerPage;

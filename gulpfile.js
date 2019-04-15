@@ -2,10 +2,12 @@ const gulp = require("gulp");
 const babel = require("gulp-babel");
 const nodemon = require("gulp-nodemon");
 const eslint = require("gulp-eslint");
+const rename = require("gulp-rename");
 
 gulp.task('js', () => {
     gulp.src('./client/*.js')
     .pipe(babel({ presets: ['env'] }))
+    .pipe(rename('bundle.js'))
     .pipe(gulp.dest('./hosted/'));
 });
 

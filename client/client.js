@@ -62,20 +62,12 @@ $(document).ready(() => {
   $("#postForm").on("submit", (e) => {
     e.preventDefault();
 
-    $("#messageBox").animate({width:'hide'},350);
-
     if($("#postTitle").val() == '' || $("#postContent").val() == '') {
       handleError("All fields are required");
       return false;
     }
 
     sendAjax($("#postForm").attr("action"), $("#postForm").serialize());
-
-    if(e.isDefaultPrevented()){
-      // default event is prevented
-  }else{
-      console.log("not defaulted");
-  }
 
     return false;
   });

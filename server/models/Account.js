@@ -38,7 +38,7 @@ AccountSchema.statics.toAPI = doc => ({
 
 const validatePassword = (doc, password, callback) => {
   const pass = doc.password;
-  console.dir("old password");
+  console.dir('old password');
   console.dir(doc.password);
 
   return crypto.pbkdf2(password, doc.salt, iterations, keyLength, 'RSA-SHA512', (err, hash) => {
@@ -81,13 +81,13 @@ AccountSchema.statics.authenticate = (username, password, callback) =>
       }
 
       return callback();
+    });
   });
-});
 
 AccountSchema.statics.changePassword = (username, salt, password) => {
   AccountModel.findOneAndUpdate(
-    { "username": username },
-    { $set: { "salt": salt, "password": password }},
+    { username },
+    { $set: { salt, password } },
     (err) => {
       if (err) {
         console.log(err);
