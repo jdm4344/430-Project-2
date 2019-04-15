@@ -2,6 +2,7 @@ const models = require('../models');
 
 const Post = models.Post;
 
+// Renders the browse page with all posts from the server
 const displayPosts = (req, res) => {
   Post.PostModel.getAllPosts((err, docs) => {
     if (err) {

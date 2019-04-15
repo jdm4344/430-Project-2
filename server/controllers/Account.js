@@ -2,14 +2,17 @@ const models = require('../models');
 
 const Account = models.Account;
 
+// Render the login page
 const loginPage = (req, res) => {
   res.render('login', { csrfToken: req.csrfToken() });
 };
 
+// Remder the signup page
 const signupPage = (req, res) => {
   res.render('signup', { csrfToken: req.csrfToken() });
 };
 
+// Ends a user's session
 const logout = (req, res) => {
   req.session.destroy();
   res.redirect('/');
@@ -38,6 +41,7 @@ const login = (request, response) => {
   });
 };
 
+// Handles submisison of new account data
 const signup = (request, response) => {
   const req = request;
   const res = response;
@@ -82,10 +86,12 @@ const signup = (request, response) => {
   });
 };
 
+// Renders the account page
 const accountPage = (req, res) => {
   res.render('account', { csrfToken: req.csrfToken() });
 };
 
+// Handles submission of new data for updating a password
 const changePassword = (request, response) => {
   const req = request;
   const res = response;

@@ -34,6 +34,7 @@ const PostSchema = new mongoose.Schema({
   },
 });
 
+// Retrieves all post from a specific user on the server
 PostSchema.statics.findByOwner = (ownerID, callback) => {
   const search = {
     owner: convertId(ownerID),
@@ -42,10 +43,11 @@ PostSchema.statics.findByOwner = (ownerID, callback) => {
   return PostModel.find(search).select('title ownerName content createdDate').exec(callback);
 };
 
+// Retrieves all posts from the sever
 PostSchema.statics.getAllPosts = (callback) =>
     PostModel.find({}).select('title ownerName content createdDate').exec(callback);
 
-
+// Handles removal of a post from the server
 PostSchema.statics.deletePost = (postID, callback) => {
   const search = {
     _id: convertId(postID),

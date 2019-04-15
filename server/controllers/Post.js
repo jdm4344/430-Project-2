@@ -13,6 +13,7 @@ const makerPage = (req, res) => {
   });
 };
 
+// Handles submission of 
 const makePost = (req, res) => {
   if (!req.body.title || !req.body.content) {
     return res.status(400).json({ error: 'Both title and content are required' });
@@ -43,6 +44,7 @@ const makePost = (req, res) => {
   return postPromise;
 };
 
+// Handles deltion of a post
 const deletePost = (req, res) => {
   if (!req.body.postID) {
     return res.status(400).json({ error: 'An error occurred' });
@@ -58,8 +60,12 @@ const deletePost = (req, res) => {
   });
 };
 
+// Render the edit page
+// NODE: UNFINISHED
 const editPage = (req, res) => res.render('edit', { csrfToken: req.csrfToken() });
 
+// Handle submission of an update to a post
+// NOTE: UNFINISHED
 const editPost = (req, res) => {
   if (!req.body.title || !req.body.content) {
     return res.status(400).json({ error: 'Both title and content are required' });
