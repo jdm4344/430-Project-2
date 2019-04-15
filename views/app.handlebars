@@ -24,19 +24,24 @@
   </section>
   <section id="posts">
     <div>
-      {{#if posts}}
-        {{#each posts}}
+      {{#if posts csrf=csrfToken}}
+        {{#each posts token=csrf}}
           <div class="post">
             <h3 class="postTitle">{{this.title}}</h3>
             <h3 class="postOwner">By: {{this.ownerName}}</h3>
             <p class="postContent">{{this.createdDate}}</p>
             <h3 class="postDate">{{this.content}}</h3>
-          </div>
-          <form id="{{this.title}}DeleteForm" action="/deletePost" method="POST">
-            <input id="postID" type="hidden" name="postID" value="{{this._id}}"/>
-            <input type="hidden" name="_csrf" value="{{csrfToken}}"/>
-            <input type="submit" value="Delete Post"/>
-          </form>
+            <form id="editForm" action="/edit" method="GET">
+              <input id="postID" type="hidden" name="postID" value="{{this._id}}"/>
+              <input type="hidden" name="_csrf" value="{{token}}"/>
+              <input type="submit" value="Edit Post"/>
+           </form>
+            <form id="deleteForm" action="/deletePost" method="POST">
+              <input id="postID" type="hidden" name="postID" value="{{this._id}}"/>
+              <input type="hidden" name="_csrf" value="{{token}}"/>
+              <input type="submit" value="Delete Post"/>
+           </form>
+          </div>          
         {{/each}}
       {{else}}
         <h3 class="emptyPost">You haven't posted yet</h3>

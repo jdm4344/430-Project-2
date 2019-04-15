@@ -84,4 +84,20 @@ $(document).ready(() => {
 
     return false;
   });
+
+  $("#deleteForm").on("submit", (e) => {
+    e.preventDefault();
+
+    sendAjax($("#deleteForm").attr("action"), $("#deleteForm").serialize());
+
+    return false;
+  });
+
+  $("#editForm").on("submit", (e) => {
+    e.preventDefault();
+
+    sendAjax($("#editForm").attr("action"), $("#editForm").serialize());
+
+    return false;
+  });
 });
