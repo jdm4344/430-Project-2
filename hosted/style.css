@@ -193,19 +193,6 @@ nav:nth-child(1) {
     margin-top: 2em;
 }
 
-/* #post {
-    z-index: 225;
-    margin-top: -20px;
-    margin-left: 135px;
-    height: 450px;
-    width: 300px;
-    -ms-transform: rotate(330deg);
-    -webkit-transform: rotate(330deg); 
-    transform: rotate(330deg);
-    margin: 0 auto;
-    display: block;
-} */
-
 #posts {
     width: 60%;
     border-radius: 4px;
@@ -287,3 +274,19 @@ h3.postContent {
     margin-bottom:10px;
 }
 
+.advert{
+    border: 4px solid #5D737E;
+    border-radius: 4px;
+    background-color: #92977E;
+    padding: 10px;
+    min-height:60px;
+    overflow: hidden;
+    width: 100%;
+    margin: 0.5em auto;
+    margin-top: 2em;
+    margin-right: 0.5em;
+    display: block;
+    color: #66101F;
+    text-align: center;
+    font-size: 4em;
+}

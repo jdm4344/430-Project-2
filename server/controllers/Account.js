@@ -104,18 +104,22 @@ const changePassword = (request, response) => {
   }
 
   // Authenticate the old password
-  Account.AccountModel.authenticate(req.session.account.username, req.body.password, (err, account) => {
-    if (err || !account) {
-      return res.status(401).json({ message: 'Incorrect password' });
-    }
-  });
+  Account.AccountModel.authenticate(req.session.account.username, req.body.password,
+    (err, account) => {
+      if (err) {
+        return res.status(401).json({ message: 'Incorrect password' });
+      } else if (!account) {
+        return res.status(401).json({ message: 'Account not found' });
+      }
+      return res.status(200).json({ message: 'Account found' });
+    });
 
   // Hash new password
   Account.AccountModel.generateHash(req.body.newPass, (salt, hash) => {
     Account.AccountModel.changePassword(req.session.account.username, salt, hash);
-
-    return res.status(200).json({ message: 'Password updated' });
   });
+
+  return res.status(200).json({ message: 'Password updated' });
 };
 
 module.exports.loginPage = loginPage;

@@ -38,8 +38,6 @@ AccountSchema.statics.toAPI = doc => ({
 
 const validatePassword = (doc, password, callback) => {
   const pass = doc.password;
-  console.dir('old password');
-  console.dir(doc.password);
 
   return crypto.pbkdf2(password, doc.salt, iterations, keyLength, 'RSA-SHA512', (err, hash) => {
     if (hash.toString('hex') !== pass) {
@@ -91,8 +89,9 @@ AccountSchema.statics.changePassword = (username, salt, password) => {
     (err) => {
       if (err) {
         console.log(err);
-        return res.status(400).json({ message: 'An error occured' });
+        return false;
       }
+      return true;
     }
   );
 };

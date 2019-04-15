@@ -32,16 +32,18 @@
             <p class="postContent">{{this.createdDate}}</p>
             <h3 class="postDate">{{this.content}}</h3>
           </div>
+          <form id="{{this.title}}DeleteForm" action="/deletePost" method="POST">
+            <input id="postID" type="hidden" name="postID" value="{{this._id}}"/>
+            <input type="hidden" name="_csrf" value="{{csrfToken}}"/>
+            <input type="submit" value="Delete Post"/>
+          </form>
         {{/each}}
       {{else}}
         <h3 class="emptyPost">You haven't posted yet</h3>
       {{/if}}
     </div>
+    <div class="advert">Your Ad Here</div>
   </section>
-  <div id="messageBox">
-    <img id="speech" src="/assets/img/favicon.png" alt="message box"/>
-    <h3><span id="errorMessage"></span></h3>
-  </div>
   <script src="/assets/bundle.js"></script>
 </body>
 </html>

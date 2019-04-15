@@ -43,17 +43,33 @@ const makePost = (req, res) => {
   return postPromise;
 };
 
-const editPage = (req, res) => {
+const deletePost = (req, res) => {
+  if (!req.body.postID) {
+    return res.status(400).json({ error: 'An error occurred' });
+  }
 
+  return Post.PostModel.deletePost(req.body.postID, (err, docs) => {
+    if (err) {
+      console.log(err);
+      return res.status(202).json({ error: 'An error occurred' });
+    }
+
+    return res.json({ posts: docs });
+  });
 };
+
+const editPage = (req, res) => res.render('edit', { csrfToken: req.csrfToken() });
 
 const editPost = (req, res) => {
   if (!req.body.title || !req.body.content) {
     return res.status(400).json({ error: 'Both title and content are required' });
   }
+
+  return res.status(200).json({ message: 'Post updated' });
 };
 
 module.exports.makerPage = makerPage;
 module.exports.make = makePost;
 module.exports.editPage = editPage;
 module.exports.editPost = editPost;
+module.exports.deletePost = deletePost;
