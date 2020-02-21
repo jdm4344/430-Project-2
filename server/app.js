@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 const expressHandlebars = require('express-handlebars');
 const redis = require('redis');
 const session = require('express-session');
-let RedisStore = require('connect-redis')(session);
+const RedisStore = require('connect-redis')(session);
 const url = require('url');
 const csrf = require('csurf');
 
@@ -31,7 +31,7 @@ let redisURL = {
 
 let redisPASS;
 
-let redisClient = redis.createClient({
+const redisClient = redis.createClient({
   host: redisURL.hostname,
   port: redisURL.port,
   pass: redisPASS,
