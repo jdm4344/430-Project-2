@@ -1,6 +1,6 @@
 const models = require('../models');
 
-const Account = models.Account;
+const { Account } = models;
 
 // Render the login page
 const loginPage = (req, res) => {
@@ -22,7 +22,7 @@ const login = (request, response) => {
   const req = request;
   const res = response;
 
-    // cast to strings to cover up some security flaws
+  // cast to strings to cover up some security flaws
   const username = `${req.body.username}`;
   const password = `${req.body.pass}`;
 
@@ -46,7 +46,7 @@ const signup = (request, response) => {
   const req = request;
   const res = response;
 
-    // cast to strings to cover up some security flaws
+  // cast to strings to cover up some security flaws
   req.body.username = `${req.body.username}`;
   req.body.pass = `${req.body.pass}`;
   req.body.pass2 = `${req.body.pass2}`;
@@ -114,7 +114,7 @@ const changePassword = (request, response) => {
     (err, account) => {
       if (err) {
         return res.status(401).json({ message: 'Incorrect password' });
-      } else if (!account) {
+      } if (!account) {
         return res.status(401).json({ message: 'Account not found' });
       }
       return res.status(200).json({ message: 'Account found' });

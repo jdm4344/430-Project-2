@@ -61,14 +61,13 @@ AccountSchema.statics.findByUsername = (name, callback) => {
 AccountSchema.statics.generateHash = (password, callback) => {
   const salt = crypto.randomBytes(saltLength);
 
-  crypto.pbkdf2(password, salt, iterations, keyLength, 'RSA-SHA512', (err, hash) =>
-    callback(salt, hash.toString('hex'))
-  );
+  crypto.pbkdf2(password, salt, iterations, keyLength, 'RSA-SHA512', (err, hash) => callback(salt, hash.toString('hex')));
 };
 
 // Validates account data on login and password change
-AccountSchema.statics.authenticate = (username, password, callback) =>
-  AccountModel.findByUsername(username, (err, doc) => {
+AccountSchema.statics.authenticate = (username, password, callback) => AccountModel.findByUsername(
+  username,
+  (err, doc) => {
     if (err) {
       return callback(err);
     }
@@ -84,7 +83,8 @@ AccountSchema.statics.authenticate = (username, password, callback) =>
 
       return callback();
     });
-  });
+  },
+);
 
 // Handles submission of a new password for a user
 AccountSchema.statics.changePassword = (username, salt, password) => {
@@ -97,7 +97,7 @@ AccountSchema.statics.changePassword = (username, salt, password) => {
         return false;
       }
       return true;
-    }
+    },
   );
 };
 

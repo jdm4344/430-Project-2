@@ -39,7 +39,8 @@ const redisClient = redis.createClient({
 
 if (process.env.REDISCLOUD_URL) {
   redisURL = url.parse(process.env.REDISCLOUD_URL);
-  redisPASS = redisURL.auth.split(':')[1];
+  const { pass } = redisURL.auth.split(':')[1];
+  redisPASS = pass;
 }
 
 // pull in routes

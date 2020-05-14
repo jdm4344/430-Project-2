@@ -1,6 +1,6 @@
 const models = require('../models');
 
-const Post = models.Post;
+const { Post } = models;
 
 // Renders the browse page with all posts from the server
 const displayPosts = (req, res) => {
