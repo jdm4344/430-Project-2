@@ -45,7 +45,7 @@ PostSchema.statics.findByOwner = (ownerID, callback) => {
 };
 
 // Retrieves all posts from the sever
-PostSchema.statics.getAllPosts = (callback) => PostModel.find({}).select('title ownerName content createdDate').exec(callback);
+PostSchema.statics.getAllPosts = (callback) => PostModel.find({}).lean('title ownerName content createdDate').exec(callback);
 
 // Handles removal of a post from the server
 PostSchema.statics.deletePost = (postID, callback) => {
