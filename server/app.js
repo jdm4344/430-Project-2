@@ -20,8 +20,8 @@ const dbURL = process.env.MONGODB_URI || 'mongodb://localhost/kwikpost';
 mongoose.connect(dbURL, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
-  },
-  (err) => {
+},
+(err) => {
   if (err) {
     console.log('Could not connect to database');
     throw err;
