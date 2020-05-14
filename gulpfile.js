@@ -5,22 +5,27 @@ const eslint = require("gulp-eslint");
 const rename = require("gulp-rename");
 
 gulp.task('js', () => {
-    gulp.src('./client/*.js')
-    .pipe(babel({ presets: ['env'] }))
+    return gulp.src('./client/*.js')
+    .pipe(babel({ presets: ['@babel/env'] }))
     .pipe(rename('bundle.js'))
     .pipe(gulp.dest('./hosted/'));
 });
 
 gulp.task('lint', () => {
-    gulp.src('./server/*.js')
+    return gulp.src('./server/*.js')
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('build', () => {
-    gulp.start('js');
-    gulp.start('lint');
+// gulp.task('build', () => {
+//     gulp.start('js');
+//     gulp.start('lint');
+// });
+
+// Gulp v4 version
+gulp.task('build', gulp.series('js', 'lint'), function(done){
+    done();
 });
 
 gulp.task('watch', () => {
