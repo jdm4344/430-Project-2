@@ -20,8 +20,8 @@ const dbURL = process.env.MONGODB_URI || 'mongodb://localhost/kwikpost';
 mongoose.connect(dbURL, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
-},
-(err) => {
+  },
+  (err) => {
   if (err) {
     console.log('Could not connect to database');
     throw err;
@@ -35,19 +35,17 @@ let redisURL = {
 
 let redisPASS;
 
-if (process.env.REDISCLOUD_URL) {
-  redisURL = url.parse(process.env.REDISCLOUD_URL);
-  console.dir(redisURL);
-  const { pass } = redisURL.auth.split(':')[1];
-  console.dir(pass);
-  redisPASS = pass;
-}
-
 const redisClient = redis.createClient({
   host: redisURL.hostname,
   port: redisURL.port,
   pass: redisPASS,
 });
+
+if (process.env.REDISCLOUD_URL) {
+  redisURL = url.parse(process.env.REDISCLOUD_URL);
+  const { pass } = redisURL.auth.split(':')[1];
+  redisPASS = pass;
+}
 
 // pull in routes
 const router = require('./router.js');
