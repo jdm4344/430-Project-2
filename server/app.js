@@ -46,11 +46,11 @@ const redisClient = redis.createClient({
   host: redisURL.hostname,
   port: redisURL.port,
   pass: redisPASS,
-  no_ready_check: true
+  no_ready_check: true,
 });
 
 redisClient.auth(redisPASS, (err) => {
-  if(err) console.log(err);
+  if (err) console.log(err);
 });
 
 // pull in routes
