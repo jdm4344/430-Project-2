@@ -35,8 +35,7 @@ if (process.env.REDISCLOUD_URL) {
   redisURL = url.parse(process.env.REDISCLOUD_URL);
   const { pass } = redisURL.auth.split(':')[1];
   redisPASS = pass;
-}
-else {
+} else {
   redisURL = {
     hostname: 'localhost',
     port: 6379,
