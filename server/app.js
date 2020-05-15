@@ -33,8 +33,7 @@ let redisPASS;
 
 if (process.env.REDISCLOUD_URL) {
   redisURL = url.parse(process.env.REDISCLOUD_URL);
-  const { pass } = redisURL.auth.split(':')[1];
-  redisPASS = pass;
+  redisPASS = redisURL.auth.split(':')[1].toString();
 } else {
   redisURL = {
     hostname: 'localhost',
