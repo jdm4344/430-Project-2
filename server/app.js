@@ -28,24 +28,31 @@ mongoose.connect(dbURL, {
   }
 });
 
-let redisURL = {
-  hostname: 'localhost',
-  port: 6379,
-};
-
+let redisURL;
 let redisPASS;
-
-const redisClient = redis.createClient({
-  host: redisURL.hostname,
-  port: redisURL.port,
-  pass: redisPASS,
-});
 
 if (process.env.REDISCLOUD_URL) {
   redisURL = url.parse(process.env.REDISCLOUD_URL);
   const { pass } = redisURL.auth.split(':')[1];
   redisPASS = pass;
 }
+else {
+  redisURL = {
+    hostname: 'localhost',
+    port: 6379,
+  };
+}
+
+const redisClient = redis.createClient({
+  host: redisURL.hostname,
+  port: redisURL.port,
+  pass: redisPASS,
+  no_ready_check: true
+});
+
+redisClient.auth(redisPASS, (err) => {
+  if(err) console.log(err);
+});
 
 // pull in routes
 const router = require('./router.js');
