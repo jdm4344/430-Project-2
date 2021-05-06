@@ -37,7 +37,7 @@
     "redis": "^3.0.2",
     "serve-favicon": "^2.5.0",
     "set-value": "^2.0.1",
-    "underscore": "^1.9.2"
+    "underscore": "^1.12.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
